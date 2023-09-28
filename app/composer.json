@@ -1,0 +1,14 @@
+{
+    "name": "chrisciampoli/longauto",
+    "autoload": {
+        "psr-4": {
+            "LongAuto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christopher Ciampoli"
+        }
+    ],
+    "require": {}
+}
