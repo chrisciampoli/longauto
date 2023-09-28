@@ -1,12 +1,17 @@
 <?php
 declare(strict_types=1);
 
+use LongAuto\Controllers\DashboardController;
 use LongAuto\Controllers\HomeController;
 use LongAuto\Services\DependencyContainer;
 use LongAuto\Services\UserService;
 use LongAuto\Repositories\UserRepository;
 use LongAuto\Controllers\UserController;
 use LongAuto\Libs\Router;
+use LongAuto\Services\VehicleService;
+use LongAuto\Repositories\VehicleRepository;
+use LongAuto\Controllers\VehicleController;
+
 
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -26,6 +31,9 @@ $container->register(PDO::class, function($container) use ($config) {
 $container->register(HomeController::class, function($container) {
     return new HomeController();
 });
+$container->register(DashboardController::class, function($container) {
+    return new DashboardController($container->get(VehicleService::class));
+});
 
 $container->register(UserRepository::class, function($container) {
     return new UserRepository($pdo = $container->get(PDO::class));
@@ -38,11 +46,24 @@ $container->register(UserService::class, function($container) {
 $container->register(UserController::class, function($container) {
     return new UserController($container->get(UserService::class));
 });
-// Register more controllers/services as needed
+
+$container->register(VehicleRepository::class, function($container) {
+    return new VehicleRepository($container->get(PDO::class));
+});
+
+$container->register(VehicleService::class, function($container) {
+    return new VehicleService($container->get(VehicleRepository::class));
+});
+
+$container->register(VehicleController::class, function($container) {
+    return new VehicleController($container->get(VehicleService::class));
+});
 
 $router = new Router($container);
 $router->registerController(LongAuto\Controllers\HomeController::class);
 $router->registerController(LongAuto\Controllers\UserController::class);
+$router->registerController(LongAuto\Controllers\DashboardController::class);
+$router->registerController(LongAuto\Controllers\VehicleController::class);
 // ... Register more controllers as needed
 
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
