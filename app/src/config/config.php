@@ -2,9 +2,9 @@
 
 return [
     'db' => [
-        'host' => 'localhost',
-        'dbname' => 'mydb',
-        'user' => 'username',
+        'host' => 'db',
+        'name' => 'mydatabase',
+        'user' => 'user',
         'password' => 'password'
     ],
     // ... other configurations

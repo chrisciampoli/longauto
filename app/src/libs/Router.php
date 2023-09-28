@@ -3,9 +3,15 @@
 namespace LongAuto\Libs;
 
 use LongAuto\Attributes\Route;
+use LongAuto\Services\DependencyContainer;
 
 class Router {
     private array $routes = [];
+    private DependencyContainer $container;
+
+    public function __construct(DependencyContainer $container) {
+        $this->container = $container;
+    }
 
     public function registerController(string $controllerClass): void {
         $reflector = new \ReflectionClass($controllerClass);
@@ -23,7 +29,8 @@ class Router {
             $cleanUri = str_replace('/index.php', '', $uri); // Remove 'index.php' from the URI
     
             if (($cleanUri === $path || $uri === $path) && $method === $httpMethod) {
-                $controller = new $controllerClass();
+                // Use the container to get the instance of the controller
+                $controller = $this->container->get($controllerClass);
                 echo $controller->$action();
                 return;
             }
