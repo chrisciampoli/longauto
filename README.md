@@ -30,4 +30,4 @@ A vehicle management system to display and manage vehicle data. Built using PHP 
    docker-compose up -d`
 
 1. **Access the Application**
-    Open a browser and go to http://localhost:8000 to view the application.`
+    Open a browser and go to http://localhost:8000 to view the application.
