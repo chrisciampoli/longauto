@@ -52,7 +52,7 @@
       if (isset($_SESSION['user_id'])) {
         echo '<a class="py-2 d-none d-md-inline-block" href="/dashboard">Dashboard</a>';
       } else {
-        echo '<a class="py-2 d-none d-md-inline-block" href="/register">Register</a>';
+        
       }
       ?>
       <?php

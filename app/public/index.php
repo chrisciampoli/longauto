@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use LongAuto\Controllers\DashboardController;
 use LongAuto\Controllers\HomeController;
 use LongAuto\Services\DependencyContainer;
 use LongAuto\Services\UserService;
@@ -31,9 +30,6 @@ $container->register(PDO::class, function($container) use ($config) {
 $container->register(HomeController::class, function($container) {
     return new HomeController($container->get(VehicleService::class));
 });
-$container->register(DashboardController::class, function($container) {
-    return new DashboardController($container->get(VehicleService::class));
-});
 
 $container->register(UserRepository::class, function($container) {
     return new UserRepository($pdo = $container->get(PDO::class));
@@ -62,7 +58,6 @@ $container->register(VehicleController::class, function($container) {
 $router = new Router($container);
 $router->registerController(LongAuto\Controllers\HomeController::class);
 $router->registerController(LongAuto\Controllers\UserController::class);
-$router->registerController(LongAuto\Controllers\DashboardController::class);
 $router->registerController(LongAuto\Controllers\VehicleController::class);
 // ... Register more controllers as needed
 
