@@ -16,4 +16,12 @@ class VehicleRepository {
         $stmt = $this->pdo->query("SELECT * FROM vehicles");
         return $stmt->fetchAll(PDO::FETCH_CLASS, Vehicle::class);
     }
+
+    public function getById(int $id): ?Vehicle {
+        $stmt = $this->pdo->prepare("SELECT * FROM vehicles WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Vehicle::class);
+        return $stmt->fetch() ?: null;
+    }
 }

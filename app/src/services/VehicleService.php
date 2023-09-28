@@ -14,4 +14,8 @@ class VehicleService {
     public function getAllVehicles(): array {
         return $this->vehicleRepository->getAll();
     }
+
+    public function getVehicleById(int $id) {
+        return $this->vehicleRepository->getById($id);
+    }
 }

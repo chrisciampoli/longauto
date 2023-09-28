@@ -85,7 +85,16 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><?= $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model ?></h5>
                                             <p class="card-text">$<?= number_format($vehicle->price, 2) ?></p>
-                                            <!-- Add any other details or buttons you want -->
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                    <a href="/vehicles/<?= $vehicle->id ?>" class="btn btn-sm btn-outline-secondary">View</a>
+
+                                                    <!-- Display edit button only if the user is logged in -->
+                                                    <?php if (isset($_SESSION['user_id'])) : ?>
+                                                        <a href="/vehicles/edit/<?= $vehicle->id ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
