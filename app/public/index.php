@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+
+use LongAuto\Controllers\HomeController;
 use LongAuto\Services\DependencyContainer;
 use LongAuto\Services\UserService;
 use LongAuto\Repositories\UserRepository;
@@ -19,6 +21,10 @@ $container->register(PDO::class, function($container) use ($config) {
     $dsn = "mysql:host=db;dbname={$config['db']['name']};charset=utf8";
 
     return new PDO($dsn, $config['db']['user'], $config['db']['password']);
+});
+
+$container->register(HomeController::class, function($container) {
+    return new HomeController();
 });
 
 $container->register(UserRepository::class, function($container) {

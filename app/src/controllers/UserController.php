@@ -21,6 +21,13 @@ class UserController extends AbstractController
         return $this->render('register');
     }
 
+    #[Route(path: '/login', method: 'GET')]
+    public function showLoginAction(): string
+    {
+        // Simply render the registration form view.
+        return $this->render('login');
+    }
+
     #[Route(path: '/registerPost', method: 'POST')]
     public function registerAction()
     {
@@ -39,7 +46,7 @@ class UserController extends AbstractController
         exit();
     }
 
-    #[Route(path: '/login', method: 'POST')]
+    #[Route(path: '/loginPost', method: 'POST')]
     public function loginAction()
     {
         $username = htmlentities($_POST['username'] ?? '', ENT_QUOTES, 'UTF-8');
