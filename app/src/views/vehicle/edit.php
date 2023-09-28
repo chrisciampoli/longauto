@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.84.0">
-  <title>Long Auto - Christopher Ciampoli</title>
+  <title>Long Auto - Christopher Ciampoli - Vehicle Edit</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
 
@@ -52,7 +52,6 @@
       if (isset($_SESSION['user_id'])) {
         echo '<a class="py-2 d-none d-md-inline-block" href="/dashboard">Dashboard</a>';
       } else {
-        
       }
       ?>
       <?php
@@ -66,31 +65,38 @@
   </header>
 
   <main>
-    <div class="container">
-      <div class="col">
-        <div class="card shadow-sm">
-          <!-- You can replace the SVG with an actual image or other content -->
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c" />
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em"><?= $vehicle->make . ' ' . $vehicle->model ?></text>
-          </svg>
-          <div class="card-body">
-            <h5 class="card-title"><?= $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model ?></h5>
-            <p class="card-text">$<?= number_format($vehicle->price, 2) ?></p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-
-                <!-- Display edit button only if the user is logged in -->
-                <?php if (isset($_SESSION['user_id'])) : ?>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                <?php endif; ?>
+    <div class="container mt-4">
+      <form action="/vehicles/update/<?= $vehicle->id ?>" method="post">
+        <div class="col">
+          <div class="card shadow-sm">
+            <!-- You can replace the SVG with an actual image or other content -->
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" />
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em"><?= $vehicle->make . ' ' . $vehicle->model ?></text>
+            </svg>
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="year" class="form-label">Year:</label>
+                <input type="number" class="form-control" id="year" name="year" value="<?= $vehicle->year ?>" required>
               </div>
+              <div class="mb-3">
+                <label for="make" class="form-label">Make:</label>
+                <input type="text" class="form-control" id="make" name="make" value="<?= $vehicle->make ?>" required>
+              </div>
+              <div class="mb-3">
+                <label for="model" class="form-label">Model:</label>
+                <input type="text" class="form-control" id="model" name="model" value="<?= $vehicle->model ?>" required>
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price ($):</label>
+                <input type="text" class="form-control" id="price" name="price" value="<?= number_format($vehicle->price, 2) ?>" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </main>
 
@@ -98,7 +104,7 @@
   <footer class="container py-5">
     <div class="row">
       <div class="col-12 col-md">
-        <small class="d-block mb-3 text-muted">&copy; 20231</small>
+        <small class="d-block mb-3 text-muted">&copy; 2023</small>
       </div>
     </div>
   </footer>

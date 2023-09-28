@@ -1,40 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Long Auto - Christopher Ciampoli - Register</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kD4Ck5BdPtF+to8xM6B5z6W5" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- jQuery and jQuery validation plugin -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-</head>
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+      <form action="/registerPost" method="POST" id="registrationForm">
+        <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
-<body>
-    <div class="container mt-5">
-        <h2 class="mb-3">Register</h2>
         <?php if (isset($error)) : ?>
             <div class="alert alert-danger"><?= htmlentities($error) ?></div>
         <?php endif; ?>
-        <form action="/registerPost" method="POST" id="registrationForm">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+          <label for="username">Username</label>
+        </div>
+        
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+          <label for="password">Password</label>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+      </form>
+    </main>
+
     <script>
         $(document).ready(function() {
             $("#registrationForm").validate({
@@ -64,7 +71,6 @@
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.min.js"></script>
-</body>
-
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

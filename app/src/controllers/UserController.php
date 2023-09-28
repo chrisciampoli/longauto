@@ -17,6 +17,10 @@ class UserController extends AbstractController
     #[Route(path: '/register', method: 'GET')]
     public function showRegisterAction(): string
     {
+        if (isset($_SESSION['user_id'])) {
+            header('Location: /');
+            exit();
+        }
         // Simply render the registration form view.
         return $this->render('register');
     }

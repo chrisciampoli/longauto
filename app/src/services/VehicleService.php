@@ -18,4 +18,9 @@ class VehicleService {
     public function getVehicleById(int $id) {
         return $this->vehicleRepository->getById($id);
     }
+
+    public function updateVehicle(int $id, int $year, string $make, string $model, float $price): bool {
+        return $this->vehicleRepository->update($id, $year, $make, $model, $price);
+    }
+    
 }

@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.84.0">
-  <title>Long Auto - Christopher Ciampoli</title>
+  <title>Long Auto - Christopher Ciampoli - Vehicle</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
 
@@ -80,11 +80,10 @@
             <p class="card-text">$<?= number_format($vehicle->price, 2) ?></p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-
+                <a class="py-2 d-none d-md-inline-block" href="/">Back</a>
                 <!-- Display edit button only if the user is logged in -->
                 <?php if (isset($_SESSION['user_id'])) : ?>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <a href="/vehicles/edit/<?= $vehicle->id ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                 <?php endif; ?>
               </div>
             </div>
