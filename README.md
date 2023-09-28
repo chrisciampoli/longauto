@@ -27,7 +27,7 @@ A vehicle management system to display and manage vehicle data. Built using PHP 
 2. **Clone the Repository**
 
    ```bash
-   docker-compose up -d`
+   docker-compose -p longauto up --build -d
 
 1. **Access the Application**
     Open a browser and go to http://localhost:8000 to view the application.
