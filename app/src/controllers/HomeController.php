@@ -12,4 +12,11 @@ class HomeController extends AbstractController {
             'message' => 'Welcome to Home!'
         ]);
     }
+
+    #[Route(path: '/test')]
+    public function testAction(): string {
+        return $this->render('index', [
+            'message' => 'Welcome to Home!'
+        ]);
+    }
 }

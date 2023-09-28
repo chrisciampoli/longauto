@@ -1,0 +1,27 @@
+# Turn on the rewrite engine
+RewriteEngine On
+
+# If the request is for an actual directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+# If the request is for an actual file, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f
+# Don't apply any other rewrite rules in such cases
+RewriteRule ^ - [L]
+
+# Remove index.php from the URL
+RewriteCond %{THE_REQUEST} ^GET\ /index\.php [NC]
+RewriteRule ^(index\.php/)(.*) /$2 [R=301,L,NE]
+
+# Forward all other requests to index.php
+RewriteRule .* index.php [L]
+
+# Ensure the charset is set to UTF-8
+AddDefaultCharset UTF-8
+
+# Disable directory listings
+Options -Indexes
+
+# If using PHP, ensure PHP is set to use UTF-8
+<IfModule mod_php.c>
+    php_value default_charset "UTF-8"
+</IfModule>
