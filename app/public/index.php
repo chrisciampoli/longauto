@@ -29,7 +29,7 @@ $container->register(PDO::class, function($container) use ($config) {
 });
 
 $container->register(HomeController::class, function($container) {
-    return new HomeController();
+    return new HomeController($container->get(VehicleService::class));
 });
 $container->register(DashboardController::class, function($container) {
     return new DashboardController($container->get(VehicleService::class));
