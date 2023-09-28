@@ -68,8 +68,16 @@ class UserController extends AbstractController
         }
     }
 
-    #[Route(path: '/logout', method: 'POST')]
+    #[Route(path: '/logout', method: 'GET')]
     public function logoutAction()
+    {
+        $this->userService->logout();
+        header('Location: /');
+        exit();
+    }
+
+    #[Route(path: '/logoutPost', method: 'POST')]
+    public function logoutPostAction()
     {
         $this->userService->logout();
         header('Location: /login');
